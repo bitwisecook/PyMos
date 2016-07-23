@@ -31,30 +31,15 @@ if __name__ == '__main__':
 
     parser.add_argument("input", help="Input file")
     parser.add_argument("output", help="Output file")
+    parser.add_argument("collection", help="Directory holding images to be mosaiced")
+    parser.add_argument("-z", "--zoom", default=20, type=int, help="Zoom Level (20)")
     parser.add_argument(
-        "collection", help="Directory holding images to be mosaiced")
+        "-ts", "--thumbsize", default=60, type=int, help="Size of the thumbnails (60)")
     parser.add_argument(
-        "-z", "--zoom", default=20, type=int, help="Zoom Level (20)")
+        "-f", "--fuzzfactor", default=0, type=int, help="Amount of randomness in output (0)")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Show verbose output")
     parser.add_argument(
-        "-ts",
-        "--thumbsize",
-        default=60,
-        type=int,
-        help="Size of the thumbnails (60)")
-    parser.add_argument(
-        "-f",
-        "--fuzzfactor",
-        default=0,
-        type=int,
-        help="Amount of randomness in output (0)")
-    parser.add_argument(
-        "-v", "--verbose", action="store_true", help="Show verbose output")
-    parser.add_argument(
-        "-nc",
-        "--new-colormap",
-        action="store_true",
-        help="Regenerate color map",
-        default=False)
+        "-nc", "--new-colormap", action="store_true", help="Regenerate color map", default=False)
     args = parser.parse_args()
 
     logging.basicConfig()

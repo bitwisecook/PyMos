@@ -103,8 +103,7 @@ def get_rtree_colormap(files, colormap_file):
     if os.path.isfile(colormap_file + ".data"):
         os.remove(colormap_file + ".data")
 
-    colormap = rtree.index.Index(
-        colormap_file, properties=get_rtree_properties())
+    colormap = rtree.index.Index(colormap_file, properties=get_rtree_properties())
     # TODO: confirm if this is in-memory and has nothing to do with the
     # .colormap.data and .colormap.index files and can be painlessly pickled
 
@@ -183,8 +182,7 @@ def build_mosaic(input_path,
         if not USING_RTREE:
             colormap = pickle.load(open(colormap_file, 'rb'))
         else:
-            colormap = rtree.index.Index(
-                colormap_file, properties=get_rtree_properties())
+            colormap = rtree.index.Index(colormap_file, properties=get_rtree_properties())
     else:
         colormap = build_colormap(files, colormap_file)
         if not USING_RTREE:
@@ -218,8 +216,7 @@ def build_mosaic(input_path,
                 if is_bw:
                     source_color = random.randint(-fuzz, fuzz) + source_color
                 else:
-                    source_color = tuple(s_x + random.randint(-fuzz, fuzz)
-                                         for s_x in source_color)
+                    source_color = tuple(s_x + random.randint(-fuzz, fuzz) for s_x in source_color)
 
             if is_bw:
                 source_color = (source_color, source_color, source_color)
@@ -235,17 +232,14 @@ def build_mosaic(input_path,
 
             if not (match in image_cache):
                 image_cache[match] = Image.open(match)
-                ### new maxfill method
+                # new maxfill method
                 tsize = image_cache[match].size
                 # taller image -> fille width to complete square
-                tsize = (thumb_size,
-                         int(round((float(tsize[1]) / tsize[0]) * thumb_size)))
+                tsize = (thumb_size, int(round((float(tsize[1]) / tsize[0]) * thumb_size)))
 
                 if (tsize[0] > tsize[1]):
                     # wider image -> fill height of thumb_sizexthumb_size square
-                    tsize = (
-                        int(round((float(tsize[0]) / tsize[1]) * thumb_size)),
-                        thumb_size)
+                    tsize = (int(round((float(tsize[0]) / tsize[1]) * thumb_size)), thumb_size)
                 image_cache[match] = image_cache[match].resize(tsize)
 
             output.paste(image_cache[match], (s_x, s_y))
@@ -253,7 +247,7 @@ def build_mosaic(input_path,
 
     log.info("Mosaic Generated. Saving...")
 
-    if (output_path == None):
+    if output_path is None:
         return output
 
     output.save(output_path, "PNG")
