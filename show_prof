@@ -19,4 +19,4 @@ try:
     stats.strip_dirs().sort_stats("cumulative").print_stats(num)
 
 except:
-    print "Usage - %s profile_file <num_lines>" % (sys.argv[0])
+    print("Usage - %s profile_file <num_lines>" % (sys.argv[0]))
