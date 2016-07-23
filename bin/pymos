@@ -14,7 +14,8 @@
 # Mosaic Generator using Python
 ''' pymos command line utility to generate mosaics'''
 
-import sys, logging
+import sys
+import logging
 
 try:
     import argparse

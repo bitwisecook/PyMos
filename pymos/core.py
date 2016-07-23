@@ -13,7 +13,9 @@
 ''' PyMos - A mosaic generator module '''
 
 from PIL import Image
-import os, sys, random
+import os
+import sys
+import random
 import logging
 import glob
 

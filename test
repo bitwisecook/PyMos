@@ -14,7 +14,8 @@
 # Mosaic Generator using Python
 ''' pymos command line utility to generate mosaics'''
 
-import sys, logging
+import sys
+import logging
 
 try:
     import argparse
@@ -27,8 +28,8 @@ from pymos.core import build_mosaic
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog="pymos",
-        description="Creates mosaics of a collection of images to \
-            closely match a target image")
+        description="""Creates mosaics of a collection of images to \
+            closely match a target image""")
 
     parser.add_argument("input", help="Input file")
     parser.add_argument("output", help="Output file")
