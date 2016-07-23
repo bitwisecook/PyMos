@@ -7,11 +7,14 @@
 #                                                        -- Yuvi Panda
 
 import sys
+import os
 import simplejson as json
 from urllib.request import urlopen
 from urllib.parse import urlencode
 
-API_KEY = '9cd766b1c8a0e3196a9c2d2f7cb4cb01'
+if 'FLICKER_API_KEY' not in os.environ:
+    print('Supply your Flicker API key in the shell environment as FLICKER_API_KEY')
+    sys.exit(1)
 
 request_info = {'method': 'flickr.photos.search',
                 'license': '4,2,1,5,7',
@@ -23,7 +26,7 @@ request_info = {'method': 'flickr.photos.search',
 
 request_info['tag'] = sys.argv[1]
 request_info['page'] = sys.argv[2]
-request_info['api_key'] = API_KEY
+request_info['api_key'] = os.environ['FLICKER_API_KEY']
 
 url = 'http://api.flickr.com/services/rest/?' + urlencode(request_info)
 
