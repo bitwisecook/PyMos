@@ -230,7 +230,7 @@ def build_mosaic(input_path,
                     match = NEAREST_CACHE[source_color]
                 else:
                     match = NEAREST_CACHE[source_color] = \
-                            colormap.nearest(source_color, 1, objects=True).next().object
+                            next(colormap.nearest(source_color, 1, objects=True)).object
 
             if not (match in image_cache):
                 image_cache[match] = Image.open(match)
